@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>{{ user.first_name|capfirst }} {{ user.last_name }} xush kelibsiz!</h1>
+        <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+            <button type="submit">Chiqib ketish</button>
+        </form>
+    {% else %}
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Normal</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Only see places</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <h2>5.99$</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Pro</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Everything in the Normal</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <h2>25$</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Ultras</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Everything in the Pro </h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        <h2>50$+</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <p>Saytga kirmagansiz</p>
+        <a href="{% url 'login' %}">Kirish</a> |
+        <a href="{% url 'signup' %}">Ro'yxatdan o'tish</a>
+    {% endif %}
+{% endblock content %}
